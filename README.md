@@ -264,24 +264,54 @@ Overall, the missingness of `avg_rating` is **not completely random**. The permu
 This suggests that the missingness mechanism is likely **MAR rather than MCAR**, meaning that whether a recipe receives ratings is related to observable characteristics such as recipe complexity. This is important for later modeling, as it implies that missing ratings are systematically associated with certain types of recipes rather than occurring purely at random.
 
 ---
-## Step 4: Hypothesis Testing
+### Hypothesis Testing
 
-To test whether cooking time is associated with recipe ratings, I compared recipes with cooking times below the median to recipes with cooking times at or above the median.
+To investigate whether cooking time is associated with recipe ratings, I compared recipes with cooking times **below the median (35 minutes)** to those with cooking times **at or above the median**.
 
-**Null hypothesis (H₀):** Recipes with shorter cooking times and recipes with longer cooking times come from the same distribution of average ratings. Any observed difference is due to random chance.
+### Hypotheses
 
-**Alternative hypothesis (H₁):** Recipes with shorter cooking times and recipes with longer cooking times come from different distributions of average ratings.
+- **Null hypothesis (H₀):** Recipes with shorter cooking times and recipes with longer cooking times come from the **same distribution of average ratings**. Any observed difference is due to random chance.
 
-**Test statistic:** The absolute difference in mean `avg_rating` between the long-cook and short-cook groups.
+- **Alternative hypothesis (H₁):** Recipes with shorter cooking times and recipes with longer cooking times come from **different distributions of average ratings**.
 
-**Significance level:** {alpha}.
+### Test Statistic
 
-I used a **permutation test** because I wanted to compare ratings across two observed groups without relying on strong parametric assumptions. Under the null hypothesis, cooking-time group membership should not matter, so shuffling the ratings provides an appropriate way to simulate the null distribution of the test statistic.
+I used the **absolute difference in mean average rating (`avg_rating`)** between the two groups:
 
-After running the permutation test, I obtained an observed test statistic of **{observed_stat:.4f}** and a p-value of **{p_value:.4f}**. At the {alpha} significance level, I **{decision.lower()}**. {conclusion}
+\[
+|\text{mean(avg_rating | long-cook)} - \text{mean(avg_rating | short-cook)}|
+\]
 
-This conclusion should be interpreted as evidence about an association rather than proof of a causal relationship.
+### Significance Level
+
+I used a significance level of **0.05**.
+
+### Why a Permutation Test?
+
+I chose a **permutation test** because I am comparing two observed groups and want to determine whether the difference in their average ratings could plausibly occur by chance. 
+
+Under the null hypothesis, cooking-time group membership should not matter, so randomly shuffling the ratings simulates what differences would look like if there were truly no relationship between cooking time and ratings. This approach avoids relying on strong parametric assumptions.
+
+### Results
+
+- **Observed test statistic:** 0.0350  
+- **Number of permutations:** 2000  
+- **p-value:** 0.0000  
+
+The observed difference in mean ratings is relatively small in magnitude, but when compared to the permutation distribution, it is **extremely unlikely to occur by chance**.
+
+### Conclusion
+
+At the **0.05 significance level**, I **reject the null hypothesis**.
+
+This provides strong statistical evidence that **shorter-cook and longer-cook recipes do not come from the same distribution of average ratings**.
+
+Although the difference in average ratings is small (around 0.035), the large sample size makes this difference statistically significant.
+
+### Interpretation
+
+This result suggests that cooking time is **associated** with recipe ratings. However, this should **not be interpreted as a causal relationship**. 
+
+There may be other factors (such as recipe complexity, ingredients, or cuisine type) that influence both cooking time and ratings.
 
 <iframe src="assets/step4_permutation_test.html" width="800" height="600" frameborder="0"></iframe>
-"""
-
