@@ -1,4 +1,4 @@
-# 🍳 DSC 80 Project 04: Investigating Recipe Ratings from Cooking Time and Recipe Features
+# 🍳 Investigating Recipe Ratings from Cooking Time and Recipe Features
 
 ## Overview
 
@@ -274,32 +274,19 @@ To investigate whether cooking time is associated with recipe ratings, I compare
 
 - **Alternative hypothesis (H₁):** Recipes with shorter cooking times and recipes with longer cooking times come from **different distributions of average ratings**.
 
-### Test Statistic
-
-I used the **absolute difference in mean average rating (`avg_rating`)** between the two groups:
-
-\[
-|\text{mean(avg_rating | long-cook)} - \text{mean(avg_rating | short-cook)}|
-\]
-
-### Significance Level
-
-I used a significance level of **0.05**.
-
-### Why a Permutation Test?
+Test Statistic: I used the **absolute difference in mean average rating (`avg_rating`)** between the two groups:
+Significance Level: I used a significance level of **0.05**.
 
 I chose a **permutation test** because I am comparing two observed groups and want to determine whether the difference in their average ratings could plausibly occur by chance. 
 
 Under the null hypothesis, cooking-time group membership should not matter, so randomly shuffling the ratings simulates what differences would look like if there were truly no relationship between cooking time and ratings. This approach avoids relying on strong parametric assumptions.
 
-### Results
-
+Test results: 
 - **Observed test statistic:** 0.0350  
 - **Number of permutations:** 2000  
 - **p-value:** 0.0000  
 
 The observed difference in mean ratings is relatively small in magnitude, but when compared to the permutation distribution, it is **extremely unlikely to occur by chance**.
-
 Therefore, at the **0.05 significance level**, I **reject the null hypothesis**. This provides strong statistical evidence that **shorter-cook and longer-cook recipes do not come from the same distribution of average ratings**. Although the difference in average ratings is small (around 0.035), the large sample size makes this difference statistically significant.
 
 ### Interpretation
