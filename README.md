@@ -1,4 +1,4 @@
-# 🍳 DSC 80 Project 04: Predicting Recipe Ratings from Cooking Time and Recipe Features
+# 🍳 DSC 80 Project 04: Investigating Recipe Ratings from Cooking Time and Recipe Features
 
 ## Overview
 
