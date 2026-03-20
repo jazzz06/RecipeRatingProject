@@ -10,23 +10,10 @@ This data science project, conducted at UC San Diego, focuses on **predicting th
 
 Food is an important part of everyday life, and cooking is both a practical task and an enjoyable activity for many people. However, recipes vary widely in the time, effort, and ingredients they require. Some users may prefer recipes that are fast and convenient, while others may be more willing to spend extra time on recipes they expect to be more satisfying. Because of this, recipe ratings may depend not only on cooking time, but also on a broader set of recipe features.
 
-In this project, I investigate whether a recipe’s average rating can be predicted using information available in the recipe metadata. My main variable of interest is `minutes`, the total preparation or cooking time of the recipe, but I also consider additional predictors such as the number of ingredients, number of steps, nutritional content, and selected recipe tags. This allows me to study whether cooking time remains useful for prediction after controlling for recipe complexity and other relevant characteristics.
-
+In this project, **I investigate whether a recipe’s average rating can be predicted using information available in the recipe metadata**. My main variable of interest is `minutes`, the total preparation or cooking time of the recipe, but I also consider additional predictors such as the number of ingredients, number of steps, nutritional content, and selected recipe tags. This allows me to study whether cooking time remains useful for prediction after controlling for recipe complexity and other relevant characteristics.
 ---
 
-## Research Question
-
-**To what extent can a recipe’s average rating be predicted using cooking time and other recipe-level characteristics from the Food.com dataset?**
-
----
-
-## Hypothesis
-
-Cooking time alone will have limited predictive power, but prediction performance will improve when recipe complexity, nutritional variables, and recipe category information are included. Additionally, the relationship between cooking time and rating is expected to be nonlinear, where extremely short or extremely long recipes may receive lower ratings compared to moderately time-intensive recipes.
-
----
-
-## Dataset Description
+## Datasets Description
 
 This project uses two datasets from [Food.com](https://www.food.com/):
 
@@ -67,6 +54,12 @@ This dataset contains **731,927 rows**, where each row represents a user interac
 | `date` | Date of interaction |
 | `rating` | User rating |
 | `review` | User review text |
+
+---
+
+## Hypothesis
+
+Cooking time alone will have limited predictive power, but prediction performance will improve when recipe complexity, nutritional variables, and recipe category information are included. Additionally, the relationship between cooking time and rating is expected to be nonlinear, where extremely short or extremely long recipes may receive lower ratings compared to moderately time-intensive recipes.
 
 ---
 
