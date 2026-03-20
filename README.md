@@ -301,17 +301,13 @@ There may be other factors (such as recipe complexity, ingredients, or cuisine t
 ### Framing a Prediction Problem
 - Prediction Problem: In this project, I aim to predict the average rating (`avg_rating`) of a recipe, making this a regression problem since the response variable is continuous and ranges from 1 to 5. I chose to model the rating as a continuous outcome rather than converting it into categories, as this preserves more information and allows for more precise predictions.
 
-- Response Variable: The response variable is `avg_rating`, which represents the average user rating of a recipe. This is a meaningful target because it captures overall user satisfaction. From earlier exploratory data analysis, variables such as cooking time, number of ingredients, number of steps, and nutritional content showed relationships with ratings, suggesting they may be useful predictors.
+- Response Variable: The response variable chosen is `avg_rating`, which represents the average user rating of a recipe. This is a meaningful target because it captures overall user satisfaction. From earlier exploratory data analysis, variables such as cooking time, number of ingredients, number of steps, and nutritional content showed relationships with ratings, suggesting they may be useful predictors.
 
 - Evaluation Metrics:
-To evaluate model performance, I use Root Mean Squared Error (RMSE) as the primary metric. RMSE is appropriate because it penalizes larger prediction errors more heavily, which is important when predicting values on a bounded scale like ratings (1–5).
+To evaluate model performance, I will use Root Mean Squared Error (RMSE) as the primary metric. RMSE is appropriate because it penalizes larger prediction errors more heavily, which is important when predicting values on a bounded scale like ratings (1–5).
 
-In addition, I report:
-- Mean Absolute Error (MAE) for an interpretable average prediction error  
-- R² (coefficient of determination) to measure how much variance in ratings is explained by the model  
-
+In addition, I will report Mean Absolute Error (MAE) for an interpretable average prediction error and R² (coefficient of determination) to measure how much variance in ratings is explained by the model  
 Using multiple metrics provides a more complete understanding of model performance.
-
 
 To ensure a realistic prediction setting, I restrict the model to use only features that are available at the time a recipe is created, before any users have rated it. This prevents data leakage and ensures the model reflects a real-world use case.
 
@@ -324,7 +320,6 @@ The features used include:
 - Submission metadata (e.g., `submitted_year`)
 
 I explicitly exclude variables such as number of ratings, reviews, or any post-publication feedback, since these would not be known at prediction time.
-
 This prediction framework allows us to estimate how well a recipe will be received based solely on its intrinsic characteristics, without relying on user feedback. Such a model could be useful for surfacing promising recipes early or assisting users in selecting high-quality recipes before ratings are available.
 
 ---
