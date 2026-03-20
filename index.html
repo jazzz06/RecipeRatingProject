@@ -76,4 +76,112 @@
       </p>
     </div>
   </body>
+  <section>
+  <h1>Overview</h1>
+  <p>
+    This data science project, conducted at UC San Diego, explores the relationship between
+    the <strong>cooking time of a recipe</strong> and its <strong>average user rating</strong>.
+    Recipes differ widely in how long they take to prepare, and understanding whether users
+    prefer longer or shorter recipes can provide insight into user behavior and recipe design.
+  </p>
+</section>
+
+<section>
+  <h1>Introduction</h1>
+  <p>
+    Food is an important part of everyday life, and cooking is both a necessity and a source
+    of enjoyment for many people. At the same time, time is often a major factor in deciding
+    what to cook. Some users may prefer quick and convenient recipes, while others may be more
+    willing to spend extra time preparing a meal if the results are better. Because of this,
+    we want to investigate whether cooking time is related to how highly a recipe is rated.
+    More specifically, we ask: <strong>do recipes that take longer to prepare receive higher
+    average ratings, or do users tend to prefer recipes with shorter cooking times?</strong>
+  </p>
+
+  <p>
+    To answer this question, we analyze two datasets containing recipes and user interactions
+    from <a href="https://www.food.com/" target="_blank">Food.com</a>. These datasets were
+    originally collected for recommender system research in the paper
+    <em>Generating Personalized Recipes from Historical User Preferences</em> by Majumder et al.
+  </p>
+
+  <p>
+    The first dataset, <code>RAW_recipes</code>, contains <strong>83,782 rows</strong>,
+    representing 83,782 unique recipes, with columns describing recipe characteristics:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Column</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>name</code></td><td>Recipe name</td></tr>
+      <tr><td><code>id</code></td><td>Recipe ID</td></tr>
+      <tr><td><code>minutes</code></td><td>Minutes required to prepare the recipe</td></tr>
+      <tr><td><code>contributor_id</code></td><td>User ID of the person who submitted the recipe</td></tr>
+      <tr><td><code>submitted</code></td><td>Date the recipe was submitted</td></tr>
+      <tr><td><code>tags</code></td><td>Food.com tags associated with the recipe</td></tr>
+      <tr>
+        <td><code>nutrition</code></td>
+        <td>
+          Nutrition information in the form
+          [calories, total fat, sugar, sodium, protein, saturated fat, carbohydrates]
+          in PDV format
+        </td>
+      </tr>
+      <tr><td><code>n_steps</code></td><td>Number of steps in the recipe</td></tr>
+      <tr><td><code>steps</code></td><td>Text of the recipe instructions, in order</td></tr>
+      <tr><td><code>description</code></td><td>User-provided recipe description</td></tr>
+      <tr><td><code>ingredients</code></td><td>List of recipe ingredients</td></tr>
+      <tr><td><code>n_ingredients</code></td><td>Number of ingredients in the recipe</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    The second dataset, <code>interactions</code>, contains <strong>731,927 rows</strong>.
+    Each row represents a user interaction with a specific recipe:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Column</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><code>user_id</code></td><td>User ID</td></tr>
+      <tr><td><code>recipe_id</code></td><td>Recipe ID</td></tr>
+      <tr><td><code>date</code></td><td>Date of interaction</td></tr>
+      <tr><td><code>rating</code></td><td>Rating given by the user</td></tr>
+      <tr><td><code>review</code></td><td>Review text</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Given these datasets, we investigate whether recipes with different cooking times receive
+    different ratings. To support this analysis, we create a new variable,
+    <code>avg_rating</code>, which represents the average rating of each recipe. We first
+    treat ratings of <code>0</code> as missing values, since they do not represent valid
+    ratings. Then, we group the interactions dataset by <code>recipe_id</code>, compute the
+    mean rating for each recipe, and merge those averages into the recipes dataset.
+  </p>
+
+  <p>
+    The most relevant columns for answering our question are <code>minutes</code>, which gives
+    the total cooking or preparation time of a recipe; <code>rating</code>, which is the score
+    given by a user; <code>avg_rating</code>, the derived average rating for each recipe; and
+    <code>id</code> / <code>recipe_id</code>, which allow the two datasets to be merged.
+  </p>
+
+  <p>
+    By studying this relationship, we hope to better understand how time investment affects
+    user satisfaction. This may help users choose recipes more effectively, help recipe writers
+    understand audience preferences, and provide useful insight for recommendation systems built
+    around online recipe platforms.
+  </p>
+</section>
 </html>
