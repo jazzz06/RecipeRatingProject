@@ -57,6 +57,16 @@ This dataset contains **731,927 rows**, where each row represents a user interac
 | `review` | User review text |
 
 ---
+## Data Processing and Feature Engineering
+
+Given the datasets, investigating whether **average recipe ratings can be predicted using cooking time and other recipe characteristics**. To facilitate this analysis, I constructed a clean, recipe-level dataset by combining information from both the recipes and interactions data.
+First, I processed the `interactions` dataset to compute a new variable, `avg_rating`, which represents the average rating for each recipe. Ratings of `0` were treated as missing values, since they do not represent valid user ratings. I then grouped by `recipe_id`, calculated the mean rating, and merged this information into the recipes dataset using the `id` column. Next, I extracted and engineered several features to support my analysis. From the recipes dataset, I used `minutes` as our main variable of interest, representing the total cooking or preparation time. I also included measures of recipe complexity such as `n_steps` and `n_ingredients`. In addition, I expanded the `nutrition` column into separate variables including `calories`, `total_fat`, `sugar`, `sodium`, `protein`, `saturated_fat`, and `carbohydrates`, allowing us to control for nutritional differences across recipes. From the `tags` column, I created indicator variables such as `is_dessert`, `is_quick`, `is_healthy`, and `is_vegetarian` to capture recipe context. Finally, I extracted `submitted_year` from the `submitted` column to account for temporal trends. The most relevant variables for our prediction task are `minutes`, `avg_rating`, `n_steps`, `n_ingredients`, the nutrition variables, and the engineered tag indicators. These features allow us to evaluate whether cooking time remains a meaningful predictor of ratings after accounting for recipe complexity, nutritional content, and contextual factors. By structuring the data in this way, I create a realistic modeling setup that allows us to compare simple and more complex predictive models, and to assess the true contribution of cooking time to recipe ratings.
+And seeking answer to my research question intend to: 
+- Help users choose recipes more effectively  
+- Help recipe creators better understand audience preferences  
+- Improve recommendation systems on recipe platforms  
+provide insight into how time investment, complexity, and recipe features relate to user satisfaction.
+ :contentReference[oaicite:0]{index=0}
 
 ## Hypothesis
 
@@ -93,13 +103,3 @@ Steps:
 
 These variables help control for recipe complexity, nutritional profile, and recipe type so that the effect of cooking time can be evaluated more meaningfully.
 
-
-## Why This Matters
-
-Understanding how recipe characteristics influence ratings can:
-
-- Help users choose recipes more effectively  
-- Help recipe creators better understand audience preferences  
-- Improve recommendation systems on recipe platforms  
-
-This project provides insight into how time investment, complexity, and recipe features relate to user satisfaction.
