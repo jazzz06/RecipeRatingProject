@@ -410,11 +410,13 @@ Since the problem is a **regression problem** (predicting average rating), I use
 | Dessert       | 2499             | 0.76 |
 | Non-dessert   | 13736            | 0.61 |
 
-- **Observed test statistic:**  
+**Observed test statistic:**  
   RMSE(Dessert) − RMSE(Non-dessert) = **0.1550**
 I then performed a permutation test with 2000 permutations to determine whether the observed difference in RMSE could have occurred by chance.
-**p-value:** 0.000000
-**Significance level (α):** 0.05  
+
+- **p-value:** 0.000000
+- **Significance level (α):** 0.05
+- 
 Since the p-value is **much smaller than 0.05**, we **reject the null hypothesis**.
 There is strong statistical evidence that the model performs worse for **dessert recipes** than for **non-dessert recipes**. This suggests that the model is **not fair with respect to dessert status**, and that prediction errors are systematically larger for dessert recipes.
 This result indicates a potential bias in the model. Dessert recipes may have characteristics (e.g., higher sugar content, more variability in ratings, or more complex patterns) that the model does not capture as effectively as it does for non-dessert recipes.
