@@ -296,6 +296,7 @@ This result suggests that cooking time is **associated** with recipe ratings. Ho
 There may be other factors (such as recipe complexity, ingredients, or cuisine type) that influence both cooking time and ratings.
 
 <iframe src="assets/step4_permutation_test.html" width="800" height="600" frameborder="0"></iframe>
+---
 
 ### Framing a Prediction Problem
 - Prediction Problem: In this project, I aim to predict the average rating (`avg_rating`) of a recipe, making this a regression problem since the response variable is continuous and ranges from 1 to 5. I chose to model the rating as a continuous outcome rather than converting it into categories, as this preserves more information and allows for more precise predictions.
@@ -325,3 +326,27 @@ The features used include:
 I explicitly exclude variables such as number of ratings, reviews, or any post-publication feedback, since these would not be known at prediction time.
 
 This prediction framework allows us to estimate how well a recipe will be received based solely on its intrinsic characteristics, without relying on user feedback. Such a model could be useful for surfacing promising recipes early or assisting users in selecting high-quality recipes before ratings are available.
+
+---
+
+## Baseline Model
+
+For my baseline model, I used a **linear regression model** and split the dataset into training and test sets to evaluate performance on unseen data. The goal of this model is to predict a recipe’s **average rating (`avg_rating`)**.
+
+The features used in this model are: `minutes` (a quantitative variable representing cooking/preparation time ), `n_ingredients` (a quantitative variable representing recipe complexity), and `is_dessert` (a nominal variable (0, 1) indicating whether the recipe is a dessert)
+To prepare the data for modeling, I applied the following transformations:
+- For `minutes` and `n_ingredients`, I filled missing values using the median and standardized the variables using `StandardScaler`
+- For `is_dessert`, I applied one-hot encoding and dropped one category to avoid redundancy  
+
+The metric I used to evaluate this model is **RMSE (Root Mean Squared Error)**, along with MAE and R² for additional interpretation.
+The performance of the model on the test set is:
+- **RMSE:** 0.6354  
+- **MAE:** 0.4650  
+- **R²:** 0.0013  
+
+For comparison, a **dummy model** that always predicts the average rating achieved nearly identical performance:
+- **RMSE:** 0.6400  
+- **MAE:** 0.4700  
+- **R²:** 0.0000  
+
+These results show that the baseline model performs **only slightly better than predicting the mean rating**. The very low R² value indicates that the model explains almost none of the variation in recipe ratings. This suggests that the features used (`minutes`, `n_ingredients`, and `is_dessert`) are **not strong predictors** of recipe ratings on their own. While they capture basic characteristics of recipes, they do not reflect more complex factors that influence user preferences. Overall, this baseline model is **not very strong**, but it provides a useful starting point. In the next step, we will build a more advanced model using additional features to improve predictive performance.
